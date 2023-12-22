@@ -2,14 +2,14 @@ import csv, abdQOL
 import tkinter as tk
 from tkinter import ttk, messagebox, filedialog as fd
 import sv_ttk
-import os, time, pyautogui, sys
+import os, time, pyautogui, sys, json
 import requests, webbrowser
 from bs4 import BeautifulSoup
 
 # initializing defaults
 appdata_folder_path = abdQOL.get_appdata_path(appdata_folder := "PrizeBondFinder")
 appdata_session_path = os.path.join(appdata_folder_path, "session.csv")
-appdata_settings_path = os.path.join(appdata_folder_path, "settings.csv")
+appdata_settings_path = os.path.join(appdata_folder_path, "settings.json")
 
 # getting appdata folder path
 settings = {}
@@ -366,14 +366,8 @@ def entry_window(table):
 
 def import_settings():
     try:
-        import_dict = {}
         with open(appdata_settings_path, "r") as file:
-            reader = csv.DictReader(file)
-            for row in reader:
-                import_dict.update(row)
-            if import_dict == {}:
-                raise Exception
-            return import_dict
+            return json.load(file)
     except:
         desktop_path = abdQOL.get_special_folders()["Desktop"]
         default_settings = {
@@ -386,9 +380,7 @@ def import_settings():
 
 def export_settings():
     with open(appdata_settings_path, "w") as file:
-        writer = csv.DictWriter(file, fieldnames=list(settings.keys()), lineterminator="\n")
-        writer.writeheader()
-        writer.writerow(settings)
+        json.dump(settings, file, indent=4)
 
 
 def add_entries_command(entries_text, bond_combo, table):
