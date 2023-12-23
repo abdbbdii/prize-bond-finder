@@ -26,4 +26,4 @@ Enjoy the seamless experience of managing your prize bonds with the Prize Bond F
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/abdbbdii)
 
-[![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
+![Made with Python](https://img.shields.io/badge/Made_with_Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
